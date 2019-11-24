@@ -12,7 +12,7 @@ const Layout = (props) => {
       variant='dark'
       sticky='top'
     >
-      <Navbar.Brand href='#home'>{props.title}</Navbar.Brand>
+      <Navbar.Brand href='/'>{props.title}</Navbar.Brand>
       {/* <Nav className='mr-auto'>
           <Nav.Link href='#home'>Home</Nav.Link>
           <Nav.Link href='#features'>Features</Nav.Link>
