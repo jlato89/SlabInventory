@@ -1,5 +1,4 @@
 import React from 'react';
-// import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 const MyModal = props => {
@@ -14,16 +13,6 @@ const MyModal = props => {
         </Modal.Header>
       }
       <Modal.Body>{props.children}</Modal.Body>
-      {/* {props.confirmation &&
-        <Modal.Footer>
-          <Button variant='primary' onClick={props.handleModalClose}>
-            Continue
-            </Button>
-          <Button variant='secondary' onClick={props.handleModalClose}>
-            Close
-            </Button>
-        </Modal.Footer>
-      } */}
     </Modal>
   );
 };

@@ -17,7 +17,7 @@ class Inventory extends Component {
           name: 'Dark Moon 1',
           type: 'Granite',
           size: '160x80',
-          updated: '11/12/2019',
+          updated: '2019-11-20 15:02:37',
           images: [
             'https://via.placeholder.com/150',
             'https://via.placeholder.com/150'
@@ -28,7 +28,7 @@ class Inventory extends Component {
           name: 'Dark Moon 2',
           type: 'Granite',
           size: '160x80',
-          updated: '11/12/2019',
+          updated: '2019-11-20 15:02:37',
           images: [
             'https://via.placeholder.com/150',
             'https://via.placeholder.com/150'
@@ -39,7 +39,7 @@ class Inventory extends Component {
           name: 'Dark Moon 3',
           type: 'Granite',
           size: '160x80',
-          updated: '11/12/2019',
+          updated: '2019-11-20 15:02:37',
           images: [
             'https://via.placeholder.com/150',
             'https://via.placeholder.com/150'
