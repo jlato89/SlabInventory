@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const passport = require('passport');
 const logger = require('morgan');
-require('dotenv').config();
+require('dotenv').config({ path: '../.env.local' });
 
 // Assign port and Start Express Server
 const PORT = process.env.PORT || 8080;
