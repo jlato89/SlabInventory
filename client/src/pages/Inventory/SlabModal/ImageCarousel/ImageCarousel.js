@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 const ImageCarousel = (props) => {
   return (
-    <Carousel style={{ marginBottom: '15px' }}>
+    <Carousel style={{ marginBottom: '15px' }} interval={null}>
       {props.images.map((image, index) => (
         <Carousel.Item key={index}>
           <img
