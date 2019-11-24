@@ -11,10 +11,11 @@ class Inventory extends Component {
     this.state = {
       modalShow: false,
       modalData: '',
+      filteredSlabs: '',
       slabInventory: [
         {
           id: 1,
-          name: 'Dark Moon 1',
+          name: 'Dark Moon',
           type: 'Granite',
           size: '160x80',
           updated: '2019-11-20 15:02:37',
@@ -25,7 +26,7 @@ class Inventory extends Component {
         },
         {
           id: 2,
-          name: 'Dark Moon 2',
+          name: 'Light Moon',
           type: 'Granite',
           size: '160x80',
           updated: '2019-11-20 15:02:37',
@@ -36,8 +37,8 @@ class Inventory extends Component {
         },
         {
           id: 3,
-          name: 'Dark Moon 3',
-          type: 'Granite',
+          name: 'Blood Moon',
+          type: 'Quartz',
           size: '160x80',
           updated: '2019-11-20 15:02:37',
           images: [
@@ -58,13 +59,21 @@ class Inventory extends Component {
   }
   addImageHandler = () => console.log('Add Image Btn Clicked');
   editSlabHandler = () => console.log('Edit Slab Btn Clicked');
+  onFilterHandler = (slabArr) => {
+    this.setState({ filteredSlabs: slabArr });
+    console.log('[INVENTORY-FILTER]', slabArr);
+  }
 
   render() {
-    const { modalShow, modalData } = this.state;
+    const { modalShow, modalData, slabInventory, filteredSlabs } = this.state;
     return (
-      <Layout title='Inventory List' >
+      <Layout 
+        title='Discover'
+        data={slabInventory}
+        filteredSlabs={this.onFilterHandler}
+      >
         <InventoryList
-          slabs={this.state.slabInventory}
+          slabs={filteredSlabs ? filteredSlabs : slabInventory}
           clickedHandler={this.handleShow}
         />
         <MyModal
