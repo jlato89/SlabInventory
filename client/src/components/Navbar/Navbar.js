@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/NavBar';
+import Navbar from 'react-bootstrap/Navbar';
 // import Nav from 'react-bootstrap/Nav';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
