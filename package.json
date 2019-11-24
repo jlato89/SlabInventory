@@ -1,0 +1,19 @@
+{
+  "name": "slabinventory",
+  "version": "1.0.0",
+  "description": "Inventory management for a current employer to keep track of Slabs and their images and details.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jlato89/SlabInventory.git"
+  },
+  "author": "Josh Latour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlato89/SlabInventory/issues"
+  },
+  "homepage": "https://github.com/jlato89/SlabInventory#readme"
+}
