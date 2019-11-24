@@ -4,7 +4,13 @@
   "description": "Inventory management for a current employer to keep track of Slabs and their images and details.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-install": "npm install --prefix client",
+    "server": "nodemon server.js",
+    "start": "node server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
@@ -12,6 +18,19 @@
   },
   "author": "Josh Latour",
   "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "concurrently": "^4.1.2",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.19.0"
+  },
   "bugs": {
     "url": "https://github.com/jlato89/SlabInventory/issues"
   },
