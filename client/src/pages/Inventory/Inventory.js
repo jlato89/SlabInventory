@@ -56,6 +56,8 @@ class Inventory extends Component {
       modalData: slab
     })
   }
+  addImageHandler = () => console.log('Add Image Btn Clicked');
+  editSlabHandler = () => console.log('Edit Slab Btn Clicked');
 
   render() {
     const { modalShow, modalData } = this.state;
@@ -70,7 +72,11 @@ class Inventory extends Component {
           showModal={modalShow}
           handleModalClose={this.handleClose}
         >
-          <SlabModal slab={modalData} />
+          <SlabModal 
+            slab={modalData}
+            addImgBtn={this.addImageHandler}
+            editSlabBtn={this.editSlabHandler}
+          />
         </MyModal>
         <AddInventory />
       </Layout>

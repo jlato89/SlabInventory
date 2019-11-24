@@ -33,18 +33,12 @@ const SlabModal = (props) => {
       <hr />
       <div className="d-flex flex-column">
         <ButtonGroup>
-          <Button
-            variant='primary'
-            onClick={props.addImageHandler}
-          >
+          <Button variant='primary' onClick={props.addImgBtn}>
             Add Image
-        </Button>
-          <Button
-            variant='warning'
-            onClick={props.editSlabHandler}
-          >
-            Modify Details
-        </Button>
+          </Button>
+          <Button variant='warning' onClick={props.editSlabBtn}>
+            Edit Details
+          </Button>
         </ButtonGroup>
       </div>
     </>
