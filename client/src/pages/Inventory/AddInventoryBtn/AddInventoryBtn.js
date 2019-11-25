@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-import './AddInventory.module.css';
+import './AddInventoryBtn.module.css';
 
-const AddInventory = (props) => {
+const AddInventoryBtn = (props) => {
   return (
     <footer>
       <Button
@@ -17,4 +17,4 @@ const AddInventory = (props) => {
   )
 }
 
-export default AddInventory
+export default AddInventoryBtn
