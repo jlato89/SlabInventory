@@ -3,7 +3,7 @@ import MyModal from '../../components/MyModal/MyModal';
 import SlabModal from './SlabModal/SlabModal';
 import Layout from '../../components/Layout/Layout';
 import InventoryList from './InventoryList/InventoryList';
-import AddInventory from './AddInventory/AddInventory';
+import AddInventoryBtn from './AddInventoryBtn/AddInventoryBtn';
 
 class Inventory extends Component {
   constructor() {
@@ -87,7 +87,7 @@ class Inventory extends Component {
             editSlabBtn={this.editSlabHandler}
           />
         </MyModal>
-        <AddInventory />
+        <AddInventoryBtn />
       </Layout>
     )
   }

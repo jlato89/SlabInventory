@@ -1,0 +1,14 @@
+div {
+  margin-bottom: 15px;
+}
+.checkboxLabel {
+  margin: 0 5px;
+}
+.checkboxLabel input {
+  display: block;
+  margin: auto;
+}
+.inputHeader {
+  display: block;
+  font-weight: bold;
+}
