@@ -7,28 +7,7 @@ import Moment from 'react-moment';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-import Camera from 'react-html5-camera-photo';
-import 'react-html5-camera-photo/build/css/index.css';
-
 const SlabModal = (props) => {
-  const onTakePhoto = (dataUri) => {
-    // Do stuff with the dataUri photo...
-    console.log('takePhoto');
-    console.log(dataUri);
-  }
-
-  // const displayAsImage = (file) => {
-  //   let imgURL = URL.createObjectURL(file),
-  //     img = document.createElement('img');
-
-  //   img.onload = () => {
-  //     URL.revokeObjectURL(imgURL);
-  //   }
-
-  //   img.src = imgURL;
-  //   document.body.appendChild(img);
-  // }
-
   return (
     <>
       <Container>
@@ -62,15 +41,6 @@ const SlabModal = (props) => {
           </Button>
         </ButtonGroup>
       </div>
-      <Camera
-        onTakePhoto={(dataUri) => { onTakePhoto(dataUri); }}
-      />
-      {/* <input
-        type='file'
-        name='image'
-        accept='image/*'
-        capture='enviroment'
-      /> */}
     </>
   )
 }
