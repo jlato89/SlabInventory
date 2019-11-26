@@ -1,0 +1,28 @@
+.mystyle {
+  text-align: center;
+}
+.myStyle > img {
+  width: 30vw;
+  margin: 0 5px;
+}
+
+.demoImagePreview {
+  position: relative;
+  text-align: center;
+}
+
+.demoImagePreview > img {
+  width: 768px;
+}
+
+@media(max-width:768px){
+  .demoImagePreview > img {
+    width: 100%;
+  }
+}
+
+/* fullscreen enable by props */
+.demoImagePreviewFullscreen > img {
+  width: 100vw;
+  height:100vh;
+}
