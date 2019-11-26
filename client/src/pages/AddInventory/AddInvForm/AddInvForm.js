@@ -5,15 +5,15 @@ import MyCamera from '../../../components/MyCamera/MyCamera';
 import styles from './AddInvForm.module.css';
 
 const AddInvForm = (props) => {
-  // const [camera, toggleCamera] = useState(false);
-  // const toggleCameraHandler = () => {
-  //   toggleCamera(!camera)
-  // }
+  const [cameraActive, toggleCamera] = useState(false);
+  const toggleCameraHandler = () => {
+    toggleCamera(!cameraActive)
+  }
   return (
-    <>
-      <Form
-        onSubmit={props.onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+    <Form
+      onSubmit={props.onSubmit}
+      render={({ handleSubmit, form, submitting, pristine, values }) => (
+        <>
           <form onSubmit={handleSubmit}>
             <div>
               <label className={styles.inputHeader}>Material</label>
@@ -43,7 +43,7 @@ const AddInvForm = (props) => {
                   value="honed"
                 />{' '}
                 Honed
-          </label>
+              </label>
               <label className={styles.checkboxLabel}>
                 <Field
                   name="finish"
@@ -52,7 +52,7 @@ const AddInvForm = (props) => {
                   value="polished"
                 />{' '}
                 Polished
-          </label>
+              </label>
               <label className={styles.checkboxLabel}>
                 <Field
                   name="finish"
@@ -61,7 +61,7 @@ const AddInvForm = (props) => {
                   value="leathered"
                 />{' '}
                 Leathered
-          </label>
+              </label>
             </div>
             <div>
               <label className={styles.inputHeader}>Material Size</label>
@@ -76,20 +76,18 @@ const AddInvForm = (props) => {
             <div className='buttons'>
               <button type='submit' disabled={submitting || pristine}>
                 Submit
-            </button>
+              </button>
               <button type='button' onClick={form.reset} disabled={submitting || pristine}>
                 Reset
-            </button>
+              </button>
             </div>
-            {/* <button onClick={toggleCameraHandler}>toggle camera</button>
-            {camera && <MyCamera material={values.name} />} */}
-            <MyCamera material={values.material} />
-
             <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
-        )}
-      />
-    </>
+          <button onClick={toggleCameraHandler}>Toggle Camera</button>
+          <MyCamera material={values.material} cameraActive={cameraActive} />
+        </>
+      )}
+    />
   )
 }
 
