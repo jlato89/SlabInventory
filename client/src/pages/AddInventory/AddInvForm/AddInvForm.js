@@ -1,17 +1,27 @@
 import React, { useState } from 'react'
 import { Form, Field } from 'react-final-form'
-import MyCamera from '../../../components/MyCamera/MyCamera';
+// import MyCamera from '../../../components/MyCamera/MyCamera';
+import MyCamera from '../../../components/MyCamera/CreateImgFile/CreateImgFile';
 
 import styles from './AddInvForm.module.css';
 
 const AddInvForm = (props) => {
   const [cameraActive, toggleCamera] = useState(false);
+  const [imgFiles, setImgFile] = useState([])
+
   const toggleCameraHandler = () => {
     toggleCamera(!cameraActive)
   }
+  const imgFileHandler = (imgFile) => {
+    console.log('[AddInvForm]', imgFile);
+    const joined = imgFiles.concat(imgFile);
+    setImgFile(joined);
+  }
+
   return (
     <Form
       onSubmit={props.onSubmit}
+      initialValues= {{imgFiles:imgFiles}}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <form onSubmit={handleSubmit}>
@@ -83,8 +93,13 @@ const AddInvForm = (props) => {
             </div>
             <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
+
           <button onClick={toggleCameraHandler}>Toggle Camera</button>
-          <MyCamera material={values.material} cameraActive={cameraActive} />
+          <MyCamera 
+            material={values.material} 
+            cameraActive={cameraActive}
+            imgFile={imgFileHandler}
+          />
         </>
       )}
     />
