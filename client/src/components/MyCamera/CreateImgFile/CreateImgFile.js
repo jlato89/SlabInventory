@@ -1,25 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Camera, { IMAGE_TYPES } from 'react-html5-camera-photo';
+import ImagePreview from '../ImagePreview/ImagePreview';
 import 'react-html5-camera-photo/build/css/index.css';
 
 
-class CreateImgFile extends Component {
-  constructor() {
-    super();
-    this.imageNumber = 0;
+const CreateImgFile = (props) => {
+  const [imgNumber, setImgNumber] = useState(0);
+  const [dataUriArr, setDataUri] = useState([])
+
+  const onTakePhotoAnimationDone = (dataUri) => {
+    console.log('Photo Added to State');
+    const joined = dataUriArr.concat(dataUri);
+    setDataUri(joined);
+
+    createImageFile(dataUri, imgNumber);
+    setImgNumber(imgNumber + 1);
   }
 
-  onTakePhoto = (dataUri) => {
-    this.createImageFile(dataUri, this.imageNumber);
-    this.imageNumber += 1;
+  const createImageFile = (dataUri, imgNumber) => {
+    let blob = dataURItoBlob(dataUri);
+    createImageFileFromBlob(blob, imgNumber);
   }
 
-  createImageFile = (dataUri, imageNumber) => {
-    let blob = this.dataURItoBlob(dataUri);
-    this.createImageFileFromBlob(blob, imageNumber);
-  }
-
-  dataURItoBlob = (dataURI) => {
+  const dataURItoBlob = (dataURI) => {
     let byteString = atob(dataURI.split(',')[1]);
 
     // separate out the mime component
@@ -34,36 +37,36 @@ class CreateImgFile extends Component {
     return blob;
   }
 
-  createImageFileFromBlob = (blob, imageNumber) => {
+  const createImageFileFromBlob = (blob, imgNumber) => {
     console.log('Blob: ', blob);
 
-    const fileName = this.getFileName(imageNumber, blob.type);
+    const fileName = getFileName(imgNumber, blob.type);
     const imgFile = new File([blob], fileName, { type: blob.type });
-    console.log('File Created', imgFile);
 
-    this.props.imgFile(imgFile)
+    // Send to parent state
+    props.imgFile(imgFile)
   }
 
-  getFileName = (imageNumber, blobType) => {
+  const getFileName = (imgNumber, blobType) => {
     let prefix = 'photo';
-    if (this.props.material) {
-      const material = this.props.material.replace(/ /g, '_');
+    if (props.material) {
+      const material = props.material.replace(/ /g, '_');
       prefix = material.toLowerCase();
     }
-    const photoNumber = this.padWithZeroNumber(imageNumber, 2);
-    const extention = this.getFileExtention(blobType);
+    const photoNumber = padWithZeroNumber(imgNumber, 2);
+    const extention = getFileExtention(blobType);
 
     return `${prefix}-${photoNumber}.${extention}`;
   }
 
-  padWithZeroNumber = (number, width) => {
+  const padWithZeroNumber = (number, width) => {
     number = number + '';
     return number.length >= width
       ? number
       : new Array(width - number.length + 1).join('0') + number;
   }
 
-  getFileExtention = (blobType) => {
+  const getFileExtention = (blobType) => {
     // by default the extention is .png
     let extention = IMAGE_TYPES.PNG;
 
@@ -73,15 +76,18 @@ class CreateImgFile extends Component {
     return extention;
   }
 
-  render() {
-    return (
-      <>
-        {this.props.cameraActive &&
-          <Camera onTakePhoto={(dataUri) => { this.onTakePhoto(dataUri); }} />
-        }
-      </>
-    );
-  }
+  return (
+    <>
+      {props.cameraActive &&
+        <Camera 
+          onTakePhotoAnimationDone={(dataUri) => { onTakePhotoAnimationDone(dataUri); }}
+        />
+      }
+      {(dataUriArr.length !== 0) &&
+        <ImagePreview material={props.material} dataUri={dataUriArr} />
+      }
+    </>
+  );
 }
 
 export default CreateImgFile;
