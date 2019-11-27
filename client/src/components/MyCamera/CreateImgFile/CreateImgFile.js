@@ -82,6 +82,7 @@ const CreateImgFile = (props) => {
         <Camera 
           onTakePhotoAnimationDone={(dataUri) => { onTakePhotoAnimationDone(dataUri); }}
           idealFacingMode={FACING_MODES.ENVIRONMENT}
+          isImageMirror={false}
         />
       }
       {(dataUriArr.length !== 0) &&
