@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Camera, { IMAGE_TYPES } from 'react-html5-camera-photo';
+import Camera, { IMAGE_TYPES, FACING_MODES } from 'react-html5-camera-photo';
 import ImagePreview from '../ImagePreview/ImagePreview';
 import 'react-html5-camera-photo/build/css/index.css';
 
@@ -81,6 +81,7 @@ const CreateImgFile = (props) => {
       {props.cameraActive &&
         <Camera 
           onTakePhotoAnimationDone={(dataUri) => { onTakePhotoAnimationDone(dataUri); }}
+          idealFacingMode={FACING_MODES.ENVIRONMENT}
         />
       }
       {(dataUriArr.length !== 0) &&
