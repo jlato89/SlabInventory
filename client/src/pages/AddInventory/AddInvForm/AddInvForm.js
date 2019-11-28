@@ -1,31 +1,30 @@
 import React, { useState } from 'react'
 import { Form, Field } from 'react-final-form'
-// import MyCamera from '../../../components/MyCamera/MyCamera';
-import MyCamera from '../../../components/MyCamera/CreateImgFile/CreateImgFile';
+import MyCamera from '../../../components/MyCamera/MyCamera';
+// import MyCamera from '../../../components/MyCamera/CreateImgFile/CreateImgFile';
 
 import styles from './AddInvForm.module.css';
 
 const AddInvForm = (props) => {
   const [cameraActive, toggleCamera] = useState(false);
-  const [imgFiles, setImgFile] = useState([])
+  const [files, setFiles] = useState([])
 
   const toggleCameraHandler = () => {
     toggleCamera(!cameraActive)
   }
-  const imgFileHandler = (imgFile) => {
-    console.log('[AddInvForm]', imgFile);
-    const joined = imgFiles.concat(imgFile);
-    setImgFile(joined);
+  const imagesHandler = (blob) => {
+    console.log('[AddInvForm]', blob);
+    setFiles(blob);
   }
 
   const required = value => (value ? undefined : 'Required');
 
   return (
-    <Form onSubmit={props.onSubmit} initialValues={{ imgFiles: imgFiles }}>
+    <Form onSubmit={props.onSubmit} initialValues={{}}>
       {({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <form onSubmit={handleSubmit}>
-            <Field name='material' placeholder='Blue Fire' validate={required}>
+            <Field name='material.name' placeholder='Blue Fire' validate={required}>
               {({ input, meta, placeholder }) => (
                 <div>
                   <label className={styles.inputHeader}>Material</label>
@@ -34,7 +33,7 @@ const AddInvForm = (props) => {
                 </div>
               )}
             </Field>
-            <Field name='type' validate={required}>
+            <Field name='material.type' validate={required}>
               {({ input, meta }) => (
                 <div>
                   <label className={styles.inputHeader}>Material Type</label>
@@ -55,7 +54,7 @@ const AddInvForm = (props) => {
               { value: 'leathered', label: 'Leathered' }].map(field => (
                 <label key={field.value} className={styles.checkboxLabel}>
                   <Field
-                    name="finish"
+                    name="material.finish"
                     component="input"
                     type="checkbox"
                     value={field.value}
@@ -64,7 +63,7 @@ const AddInvForm = (props) => {
                 </label>
               ))}
             </div>
-            <Field name='size' placeholder='170 x 85' validate={required}>
+            <Field name='material.size' placeholder='170 x 85' validate={required}>
               {({ input, meta, placeholder }) => (
                 <div>
                   <label className={styles.inputHeader}>Material Size</label>
@@ -73,10 +72,11 @@ const AddInvForm = (props) => {
                 </div>
               )}
             </Field>
+
             <MyCamera
               material={values.material}
               cameraActive={cameraActive}
-              imgFile={imgFileHandler}
+              images={(blobArr) => { setFiles(blobArr) }}
             />
 
             <div className='buttons'>
