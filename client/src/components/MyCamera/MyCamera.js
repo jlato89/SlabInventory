@@ -1,33 +1,57 @@
-import React, { Component } from 'react';
-import { Camera } from 'react-html5-camera-photo';
+import React, { useState } from 'react';
+import Camera, { FACING_MODES } from 'react-html5-camera-photo';
 import ImagePreview from './ImagePreview/ImagePreview';
 import 'react-html5-camera-photo/build/css/index.css';
 
-class MyCamera extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = { dataUri: [] };
-    this.onTakePhotoAnimationDone = this.onTakePhotoAnimationDone.bind(this);
-  }
+const MyCamera = (props) => {
+  const [dataUriArr, setDataUri] = useState([]);
+  const [blobArr, setBlob] = useState([]);
 
-  onTakePhotoAnimationDone(dataUri) {
+
+  const onTakePhotoAnimationDone = (dataUri) => {
     console.log('Photo Added to State');
-    const joined = this.state.dataUri.concat(dataUri);
-    this.setState({ dataUri: joined });
+    const newUri = dataUriArr.concat(dataUri);
+    setDataUri(newUri);
+
+    dataURItoBlob(dataUri);
   }
 
-  render() {
-    return (
-      <div className="MyCamera">
-        {this.props.cameraActive &&
-        <Camera onTakePhotoAnimationDone={this.onTakePhotoAnimationDone} />
-        }
-        {(this.state.dataUri.length !== 0) &&
-        <ImagePreview material={this.props.material} dataUri={this.state.dataUri} />
-        }
-      </div>
-    );
+  const dataURItoBlob = (dataURI) => {
+    let byteString = atob(dataURI.split(',')[1]);
+
+    //? separate out the mime component
+    let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    let ab = new ArrayBuffer(byteString.length);
+    let ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    let blob = new Blob([ab], { type: mimeString });
+
+    console.log('[CreateImgFile]', blob);
+    const newBlob = blobArr.concat(blob);
+    setBlob(newBlob);
+
+    props.images(newBlob)
+    // return blob;
   }
+
+
+  return (
+    <div className="MyCamera">
+      {props.cameraActive &&
+        <Camera
+          onTakePhotoAnimationDone={(dataUri) => { onTakePhotoAnimationDone(dataUri) }}
+          idealFacingMode={FACING_MODES.ENVIRONMENT}
+          isImageMirror={false}
+        />
+      }
+      {(dataUriArr.length !== 0) &&
+        <ImagePreview material={props.material} dataUri={dataUriArr} />
+      }
+    </div>
+  );
 }
 
 export default MyCamera;
