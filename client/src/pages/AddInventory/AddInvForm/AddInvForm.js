@@ -18,70 +18,66 @@ const AddInvForm = (props) => {
     setImgFile(joined);
   }
 
+  const required = value => (value ? undefined : 'Required');
+
   return (
-    <Form
-      onSubmit={props.onSubmit}
-      initialValues= {{imgFiles:imgFiles}}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
+    <Form onSubmit={props.onSubmit} initialValues={{ imgFiles: imgFiles }}>
+      {({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <form onSubmit={handleSubmit}>
-            <div>
-              <label className={styles.inputHeader}>Material</label>
-              <Field
-                name='material'
-                component='input'
-                type='text'
-                placeholder='Blue Fire'
-              />
-            </div>
-            <div>
-              <label className={styles.inputHeader}>Material Type</label>
-              <Field name='type' component='select'>
-                <option value=''>Choose Type</option>
-                <option value='marble'>Marble</option>
-                <option value='granite'>Granite</option>
-                <option value='quartz'>Quartz</option>
-              </Field>
-            </div>
+            <Field name='material' placeholder='Blue Fire' validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div>
+                  <label className={styles.inputHeader}>Material</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name='type' validate={required}>
+              {({ input, meta }) => (
+                <div>
+                  <label className={styles.inputHeader}>Material Type</label>
+                  <select {...input}>
+                    <option value=''>Choose Type</option>
+                    <option value='marble'>Marble</option>
+                    <option value='granite'>Granite</option>
+                    <option value='quartz'>Quartz</option>
+                  </select>
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
             <div>
               <label className={styles.inputHeader}>Material Finish</label>
-              <label className={styles.checkboxLabel}>
-                <Field
-                  name="finish"
-                  component="input"
-                  type="checkbox"
-                  value="honed"
-                />{' '}
-                Honed
-              </label>
-              <label className={styles.checkboxLabel}>
-                <Field
-                  name="finish"
-                  component="input"
-                  type="checkbox"
-                  value="polished"
-                />{' '}
-                Polished
-              </label>
-              <label className={styles.checkboxLabel}>
-                <Field
-                  name="finish"
-                  component="input"
-                  type="checkbox"
-                  value="leathered"
-                />{' '}
-                Leathered
-              </label>
+              {[{ value: 'honed', label: 'Honed' },
+              { value: 'polished', label: 'Polished' },
+              { value: 'leathered', label: 'Leathered' }].map(field => (
+                <label key={field.value} className={styles.checkboxLabel}>
+                  <Field
+                    name="finish"
+                    component="input"
+                    type="checkbox"
+                    value={field.value}
+                  />{' '}
+                  {field.label}
+                </label>
+              ))}
             </div>
-            <div>
-              <label className={styles.inputHeader}>Material Size</label>
-              <Field
-                name='size'
-                component='input'
-                type='text'
-                placeholder='170 x 85'
-              />
-            </div>
+            <Field name='size' placeholder='170 x 85' validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div>
+                  <label className={styles.inputHeader}>Material Size</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <MyCamera
+              material={values.material}
+              cameraActive={cameraActive}
+              imgFile={imgFileHandler}
+            />
 
             <div className='buttons'>
               <button type='submit' disabled={submitting || pristine}>
@@ -95,14 +91,9 @@ const AddInvForm = (props) => {
           </form>
 
           <button onClick={toggleCameraHandler}>Toggle Camera</button>
-          <MyCamera 
-            material={values.material} 
-            cameraActive={cameraActive}
-            imgFile={imgFileHandler}
-          />
         </>
       )}
-    />
+    </Form>
   )
 }
 
