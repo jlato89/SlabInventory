@@ -4,13 +4,11 @@ import AddInvForm from './AddInvForm/AddInvForm';
 class AddInventory extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-       formData: {}
-    }
+    this.state = {}
   }
-  
+
   onSubmit = (formObj) => {
-    formObj.finish = formObj.finish.toString();
+    formObj.material.finish = formObj.material.finish.toString();
     console.log('[AddInventory]', formObj);
   };
 
