@@ -33,8 +33,9 @@ const MyCamera = (props) => {
     const newBlob = blobArr.concat(blob);
     setBlob(newBlob);
 
-    props.images(newBlob)
-    // return blob;
+    if (props.onChange) {
+      props.onChange(newBlob);
+    }
   }
 
 
