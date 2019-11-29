@@ -7,20 +7,21 @@ import styles from './AddInvForm.module.css';
 
 const AddInvForm = (props) => {
   const [cameraActive, toggleCamera] = useState(false);
-  const [files, setFiles] = useState([])
 
   const toggleCameraHandler = () => {
     toggleCamera(!cameraActive)
   }
-  const imagesHandler = (blob) => {
-    console.log('[AddInvForm]', blob);
-    setFiles(blob);
-  }
+
+  const matFinishes = [
+    { value: 'honed', label: 'Honed' },
+    { value: 'polished', label: 'Polished' },
+    { value: 'leathered', label: 'Leathered' }
+  ]
 
   const required = value => (value ? undefined : 'Required');
 
   return (
-    <Form onSubmit={props.onSubmit} initialValues={{}}>
+    <Form onSubmit={props.onSubmit}>
       {({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <form onSubmit={handleSubmit}>
@@ -49,16 +50,14 @@ const AddInvForm = (props) => {
             </Field>
             <div>
               <label className={styles.inputHeader}>Material Finish</label>
-              {[{ value: 'honed', label: 'Honed' },
-              { value: 'polished', label: 'Polished' },
-              { value: 'leathered', label: 'Leathered' }].map(field => (
+              {matFinishes.map(field => (
                 <label key={field.value} className={styles.checkboxLabel}>
                   <Field
-                    name="material.finish"
-                    component="input"
-                    type="checkbox"
+                    name='material.finish'
+                    component='input'
+                    type='checkbox'
                     value={field.value}
-                  />{' '}
+                  />
                   {field.label}
                 </label>
               ))}
@@ -72,12 +71,17 @@ const AddInvForm = (props) => {
                 </div>
               )}
             </Field>
-
-            <MyCamera
-              material={values.material}
-              cameraActive={cameraActive}
-              images={(blobArr) => { setFiles(blobArr) }}
-            />
+            <Field name='files'>
+              {props => (
+                <div>
+                  <MyCamera
+                    {...props.input}
+                    material={values.material}
+                    cameraActive={cameraActive}
+                  />
+                </div>
+              )}
+            </Field>
 
             <div className='buttons'>
               <button type='submit' disabled={submitting || pristine}>
