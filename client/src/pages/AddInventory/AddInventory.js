@@ -5,14 +5,21 @@ import axios from 'axios';
 class AddInventory extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { formData: '' } //! Testing purposes only
   }
 
-  onSubmit = (formObj) => {
-    formObj.material.finish = formObj.material.finish.toString();
-    console.log('[AddInventory]', formObj);
+  onSubmit = ({ files, material }) => {
+    let formData = new FormData();
+    material.finish = material.finish.toString();
+    formData.append('material', material)
 
-    axios.post('/api/addMaterial', formObj)
+    files.map((file, index) => {
+      formData.append(material.name + index, file);
+    });
+
+    this.setState({ formData: formData });
+
+    axios.post('/api/addMaterial', formData)
       .then(response => {
         console.log(response);
       })
