@@ -1,4 +1,4 @@
-module.exports = function(sequelize, Sequelize) {
+module.exports = (sequelize, Sequelize) => {
    const User = sequelize.define('user', {
       userName: {
          type: Sequelize.STRING,
@@ -12,7 +12,7 @@ module.exports = function(sequelize, Sequelize) {
          type: Sequelize.BOOLEAN,
          defaultValue: 0
       },
-      name: {
+      displayName: {
          type: Sequelize.STRING
       }
    });
