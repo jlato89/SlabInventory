@@ -1,24 +1,18 @@
 const db = require('../../models');
 const formidable = require('formidable');
-const multer = require('multer')
+const multer = require('multer');
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploadTesting/')
-  },
-  filename: (req, file, cb) => {
-    const fm = file.mimetype;
-    const imgType = fm.substr(fm.indexOf('/') + 1);
-    cb(null, file.fieldname + '.' + imgType)
-  }
-})
+  destination: (req, file, cb) => { cb(null, 'uploadTesting/') },
+  filename: (req, file, cb) => { cb(null, file.originalname) }
+});
 const upload = multer({ storage: storage })
 
 module.exports = app => {
   app.post('/api/addMaterial',
-    upload.any(),
+    upload.array('image', 6),
     (req, res, next) => {
-      console.log(req.body);
-      console.log(req.files);
+      console.log('Fields', req.body);
+      console.log('Files', req.files);
     })
 
 
