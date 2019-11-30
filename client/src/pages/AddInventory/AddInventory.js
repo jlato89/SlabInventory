@@ -10,12 +10,24 @@ class AddInventory extends Component {
 
   onSubmit = ({ files, material }) => {
     let formData = new FormData();
-    material.finish = material.finish.toString();
-    formData.append('material', material)
 
-    files.map((file, index) => {
-      formData.append(material.name + index, file);
-    });
+    material.finish = material.finish.toString();
+    for (let key in material) {
+      if (material.hasOwnProperty(key)) {
+        formData.append(key, material[key])
+      }
+    }
+
+    if (files) {
+      files.map((file) => {
+        const materialName = material.name.trim().replace(/ /g, '_');
+        const randomNum = Math.floor(Math.random() * 1001);
+        let ext = '.png';
+        if (file.type === 'image/jpeg') { ext = '.jpg' }
+        const fileName = materialName + randomNum + ext;
+        formData.append('image', file, fileName);
+      });
+    }
 
     this.setState({ formData: formData });
 
