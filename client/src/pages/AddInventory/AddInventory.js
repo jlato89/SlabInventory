@@ -33,7 +33,7 @@ class AddInventory extends Component {
 
     this.setState({ formData: formData });
 
-    axios.post('/api/addMaterial', formData)
+    axios.post('/api/addSlab', formData)
       .then(response => {
         console.log(response);
       })
