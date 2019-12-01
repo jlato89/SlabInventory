@@ -32,7 +32,7 @@ const SlabModal = (props) => {
         <Row>
           <Col>Last Updated:</Col>
           <Col>
-            <Moment fromNow>{props.slab.updated}</Moment>
+            <Moment fromNow>{props.slab.updatedAt}</Moment>
           </Col>
         </Row>
       </Container>

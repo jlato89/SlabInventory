@@ -35,7 +35,7 @@ const InventoryList = (props) => {
               }
             </td>
             <td style={{ textAlign: 'right' }}>
-              <Moment fromNow>{slab.updated}</Moment>
+              <Moment fromNow>{slab.updatedAt}</Moment>
             </td>
           </tr>
         ))}
