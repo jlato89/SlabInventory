@@ -12,7 +12,7 @@ module.exports = app => {
     db.slab.findAll({})
       .then(slabs => {
         // console.log('Slabs', slabs);
-        res.status(200).send(slabs);
+        res.status(200).send(slabs.dataValues);
       })
       .catch(err => {
         console.log('ERROR', err.response);
@@ -24,7 +24,18 @@ module.exports = app => {
   app.post('/api/addSlab',
     upload.array('image', 6),
     (req, res, next) => {
-      console.log('Fields', req.body);
+      const data = req.body;
       console.log('Files', req.files);
+      console.log('Fields', data);
+
+      db.slab.create(data)
+        .then(response => {
+          console.log('[AddSlab]', response.dataValues);
+          res.status(200).send({ message: 'Slab Added Successfully!' })
+        })
+        .catch(err => {
+          console.log('ERROR', err.response);
+          res.status(500).send(err.response);
+        });
     });
 };
