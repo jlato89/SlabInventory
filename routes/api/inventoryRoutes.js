@@ -12,7 +12,7 @@ module.exports = app => {
     db.slab.findAll({})
       .then(slabs => {
         // console.log('Slabs', slabs);
-        res.status(200).send(slabs.dataValues);
+        res.status(200).send(slabs);
       })
       .catch(err => {
         console.log('ERROR', err.response);
