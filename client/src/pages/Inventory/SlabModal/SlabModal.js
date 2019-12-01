@@ -12,7 +12,13 @@ const SlabModal = (props) => {
     <>
       <Container>
         <Row>
-          <Col><ImageCarousel images={props.slab.images} /></Col>
+          <Col>
+            {props.slab.imgFileNames ?
+              <ImageCarousel images={props.slab.imgFileNames} />
+              :
+              <p style={{ textAlign: 'center' }}>No Images</p>
+            }
+          </Col>
         </Row>
         <Row>
           <Col>Name:</Col> <Col>{props.slab.name}</Col>
