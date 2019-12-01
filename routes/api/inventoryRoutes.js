@@ -7,10 +7,24 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 module.exports = app => {
-  app.post('/api/addMaterial',
+  //? Get Slab List
+  app.get('/api/slabs', (req, res) => {
+    db.slab.findAll({})
+      .then(slabs => {
+        // console.log('Slabs', slabs);
+        res.status(200).send(slabs);
+      })
+      .catch(err => {
+        console.log('ERROR', err.response);
+        res.status(500).send(err.response);
+      });
+  });
+
+  //? Add Slab
+  app.post('/api/addSlab',
     upload.array('image', 6),
     (req, res, next) => {
       console.log('Fields', req.body);
       console.log('Files', req.files);
-    })
+    });
 };
