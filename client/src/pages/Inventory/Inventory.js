@@ -26,16 +26,13 @@ class Inventory extends Component {
       .catch(err => console.log(err.response));
   }
 
-  handleClose = () => this.setState({ modalShow: false });
-  handleShow = (slab) => {
-    this.setState({
-      modalShow: true,
-      modalData: slab
-    })
+  modalClose = () => this.setState({ modalShow: false });
+  modalOpen = (slab) => {
+    this.setState({ modalShow: true, modalData: slab })
   }
   addImageHandler = () => console.log('Add Image Btn Clicked');
   editSlabHandler = () => console.log('Edit Slab Btn Clicked');
-  onFilterHandler = (slabArr) => {
+  searchHandler = (slabArr) => {
     this.setState({ filteredSlabs: slabArr });
     console.log('[INVENTORY-FILTER]', slabArr);
   }
@@ -46,12 +43,12 @@ class Inventory extends Component {
       <Layout data={slabs} filteredData={this.onFilterHandler}>
         <InventoryList
           slabs={filteredSlabs ? filteredSlabs : slabs}
-          clickedHandler={this.handleShow}
+          clickedHandler={this.modalOpen}
         />
         <MyModal
           title='Slab Details'
           showModal={modalShow}
-          handleModalClose={this.handleClose}
+          handleModalClose={this.modalClose}
         >
           <SlabModal
             slab={modalData}
