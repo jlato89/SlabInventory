@@ -4,11 +4,7 @@ import NavBar from '../Navbar/Navbar';
 const Layout = (props) => {
   return (
     <>
-      <NavBar
-        title={props.title} 
-        slabs={props.data}
-        submitHandler={props.filteredSlabs}
-      />
+      <NavBar slabs={props.data} submitHandler={props.filteredData} />
       <main>{props.children}</main>
     </>
   );

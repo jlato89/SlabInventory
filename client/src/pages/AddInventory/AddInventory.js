@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Layout from '../../components/Layout/Layout';
 import AddInvForm from './AddInvForm/AddInvForm';
 import axios from 'axios';
 
@@ -41,9 +42,9 @@ class AddInventory extends Component {
 
   render() {
     return (
-      <div>
+      <Layout>
         <AddInvForm onSubmit={this.onSubmit} />
-      </div>
+      </Layout>
     )
   }
 }

@@ -43,11 +43,7 @@ class Inventory extends Component {
   render() {
     const { modalShow, modalData, slabs, filteredSlabs } = this.state;
     return (
-      <Layout
-        title='Discover'
-        data={slabs}
-        filteredSlabs={this.onFilterHandler}
-      >
+      <Layout data={slabs} filteredData={this.onFilterHandler}>
         <InventoryList
           slabs={filteredSlabs ? filteredSlabs : slabs}
           clickedHandler={this.handleShow}

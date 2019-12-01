@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 // import Nav from 'react-bootstrap/Nav';
 import FormControl from 'react-bootstrap/FormControl';
@@ -18,26 +18,26 @@ const Layout = (props) => {
 
   return (
     <Navbar
-      bg='dark' 
+      bg='dark'
       variant='dark'
       sticky='top'
     >
-      <Navbar.Brand href='/'>{props.title}</Navbar.Brand>
+      <Navbar.Brand href='/'>Discover</Navbar.Brand>
       {/* <Nav className='mr-auto'>
           <Nav.Link href='#home'>Home</Nav.Link>
           <Nav.Link href='#features'>Features</Nav.Link>
           <Nav.Link href='#pricing'>Pricing</Nav.Link>
         </Nav> */}
-      <Form 
+      <Form
         inline
-        className='ml-auto' 
+        className='ml-auto'
         onSubmit={submitHandler}
       >
         <FormControl
           type='input'
           size='sm'
           placeholder='Search'
-          onChange={e => {setValue(e.target.value)}}
+          onChange={e => { setValue(e.target.value) }}
         />
       </Form>
     </Navbar>
