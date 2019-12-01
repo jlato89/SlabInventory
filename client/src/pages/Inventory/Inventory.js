@@ -4,6 +4,7 @@ import SlabModal from './SlabModal/SlabModal';
 import Layout from '../../components/Layout/Layout';
 import InventoryList from './InventoryList/InventoryList';
 import AddInventoryBtn from './AddInventoryBtn/AddInventoryBtn';
+import axios from 'axios';
 
 class Inventory extends Component {
   constructor() {
@@ -12,42 +13,17 @@ class Inventory extends Component {
       modalShow: false,
       modalData: '',
       filteredSlabs: '',
-      slabInventory: [
-        {
-          id: 1,
-          name: 'Dark Moon',
-          type: 'Granite',
-          size: '160x80',
-          updated: '2019-11-20 15:02:37',
-          images: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150'
-          ]
-        },
-        {
-          id: 2,
-          name: 'Light Moon',
-          type: 'Granite',
-          size: '160x80',
-          updated: '2019-11-20 15:02:37',
-          images: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150'
-          ]
-        },
-        {
-          id: 3,
-          name: 'Blood Moon',
-          type: 'Quartz',
-          size: '160x80',
-          updated: '2019-11-20 15:02:37',
-          images: [
-            'https://via.placeholder.com/150',
-            'https://via.placeholder.com/150'
-          ]
-        }
-      ]
+      slabs: []
     }
+  }
+
+  componentDidMount() {
+    axios.get('/api/slabs')
+      .then(slabs => {
+        console.log('[INVENTORY]', slabs.data);
+        this.setState({ slabs: slabs.data })
+      })
+      .catch(err => console.log(err.response));
   }
 
   handleClose = () => this.setState({ modalShow: false });
@@ -65,15 +41,15 @@ class Inventory extends Component {
   }
 
   render() {
-    const { modalShow, modalData, slabInventory, filteredSlabs } = this.state;
+    const { modalShow, modalData, slabs, filteredSlabs } = this.state;
     return (
-      <Layout 
+      <Layout
         title='Discover'
-        data={slabInventory}
+        data={slabs}
         filteredSlabs={this.onFilterHandler}
       >
         <InventoryList
-          slabs={filteredSlabs ? filteredSlabs : slabInventory}
+          slabs={filteredSlabs ? filteredSlabs : slabs}
           clickedHandler={this.handleShow}
         />
         <MyModal
@@ -81,7 +57,7 @@ class Inventory extends Component {
           showModal={modalShow}
           handleModalClose={this.handleClose}
         >
-          <SlabModal 
+          <SlabModal
             slab={modalData}
             addImgBtn={this.addImageHandler}
             editSlabBtn={this.editSlabHandler}
