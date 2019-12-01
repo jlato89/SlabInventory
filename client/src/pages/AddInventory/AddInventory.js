@@ -25,7 +25,8 @@ class AddInventory extends Component {
         let ext = '.png';
         if (file.type === 'image/jpeg') { ext = '.jpg' }
         const fileName = materialName + randomNum + ext;
-        formData.append('image', file, fileName);
+
+        return formData.append('image', file, fileName);
       });
     }
 
