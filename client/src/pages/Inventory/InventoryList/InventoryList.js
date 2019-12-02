@@ -18,7 +18,7 @@ const InventoryList = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.slabs.map(slab => (
+        {props.slabArr.map(slab => (
           <tr
             key={slab.id}
             onClick={() => props.clickedHandler(slab)}

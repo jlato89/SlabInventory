@@ -3,17 +3,17 @@ import Navbar from 'react-bootstrap/Navbar';
 // import Nav from 'react-bootstrap/Nav';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
-import matchSorter from 'match-sorter';
+// import matchSorter from 'match-sorter';
 
 const Layout = (props) => {
   const [value, setValue] = useState(null)
 
-  let resultArr = matchSorter(props.slabs, value, { keys: ['name'] })
-  console.log('[SEARCH]', resultArr);
+  // let resultArr = matchSorter(props.slabs, value, { keys: ['name'] })
+  // console.log('[SEARCH]', resultArr);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.submitHandler(resultArr);
+    // props.submitHandler(resultArr);
   }
 
   return (
@@ -36,7 +36,7 @@ const Layout = (props) => {
         <FormControl
           type='input'
           size='sm'
-          placeholder='Search'
+          placeholder='Search (WIP)'
           onChange={e => { setValue(e.target.value) }}
         />
       </Form>

@@ -12,8 +12,8 @@ class Inventory extends Component {
     this.state = {
       modalShow: false,
       modalData: '',
-      filteredSlabs: '',
-      slabs: []
+      searchResults: null,
+      slabArr: []
     }
   }
 
@@ -21,7 +21,7 @@ class Inventory extends Component {
     axios.get('/api/slabs')
       .then(slabs => {
         console.log('[INVENTORY]', slabs.data);
-        this.setState({ slabs: slabs.data })
+        this.setState({ slabArr: slabs.data })
       })
       .catch(err => console.log(err.response));
   }
@@ -32,17 +32,13 @@ class Inventory extends Component {
   }
   addImageHandler = () => console.log('Add Image Btn Clicked');
   editSlabHandler = () => console.log('Edit Slab Btn Clicked');
-  searchHandler = (slabArr) => {
-    this.setState({ filteredSlabs: slabArr });
-    console.log('[INVENTORY-FILTER]', slabArr);
-  }
 
   render() {
-    const { modalShow, modalData, slabs, filteredSlabs } = this.state;
+    const { modalShow, modalData, slabArr, searchResults } = this.state;
     return (
-      <Layout data={slabs} filteredData={this.onFilterHandler}>
+      <Layout>
         <InventoryList
-          slabs={filteredSlabs ? filteredSlabs : slabs}
+          slabArr={searchResults ? searchResults : slabArr}
           clickedHandler={this.modalOpen}
         />
         <MyModal
