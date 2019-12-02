@@ -2,11 +2,27 @@ import React, { Component } from 'react';
 import Layout from '../../components/Layout/Layout';
 import AddInvForm from './AddInvForm/AddInvForm';
 import axios from 'axios';
-
+import MyModal from '../../components/MyModal/MyModal';
+import { Redirect } from 'react-router-dom';
 class AddInventory extends Component {
   constructor(props) {
     super(props)
-    this.state = { formData: '' } //! Testing purposes only
+    this.state = {
+      modalShow: false,
+      redirect: false
+    }
+  }
+
+  modalClose = () => this.setState({ modalShow: false });
+  setRedirect = () => this.setState({ redirect: true });
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+  onSuccessHandler = () => {
+    this.setState({ modalShow: true });
+    setTimeout(() => { this.setState({ redirect: true }) }, 3000);
   }
 
   onSubmit = ({ files, material }) => {
@@ -31,11 +47,10 @@ class AddInventory extends Component {
       });
     }
 
-    this.setState({ formData: formData });
-
     axios.post('/api/addSlab', formData)
       .then(response => {
         console.log(response);
+        this.onSuccessHandler()
       })
       .catch(err => console.log(err));
   };
@@ -44,6 +59,13 @@ class AddInventory extends Component {
     return (
       <Layout>
         <AddInvForm onSubmit={this.onSubmit} />
+        <MyModal showModal={this.state.modalShow} handleModalClose={this.modalClose}>
+          <center>
+            <h5>Material added successfully!</h5>
+            <h6>Redirecting in 3 secs</h6>
+          </center>
+        </MyModal>
+        {this.renderRedirect()}
       </Layout>
     )
   }
