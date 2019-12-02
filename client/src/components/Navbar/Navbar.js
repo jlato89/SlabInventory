@@ -3,17 +3,17 @@ import Navbar from 'react-bootstrap/Navbar';
 // import Nav from 'react-bootstrap/Nav';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
-// import matchSorter from 'match-sorter';
+import matchSorter from 'match-sorter';
 
 const Layout = (props) => {
   const [value, setValue] = useState(null)
 
-  // let resultArr = matchSorter(props.slabs, value, { keys: ['name'] })
-  // console.log('[SEARCH]', resultArr);
+  let resultArr = matchSorter(props.slabArr, value, { keys: ['name', 'type'] })
+  console.log('[NAVBAR Search]', resultArr);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // props.submitHandler(resultArr);
+    props.searchResults(resultArr);
   }
 
   return (

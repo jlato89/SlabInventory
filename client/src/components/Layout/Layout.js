@@ -4,7 +4,7 @@ import NavBar from '../Navbar/Navbar';
 const Layout = (props) => {
   return (
     <>
-      <NavBar />
+      <NavBar slabArr={props.slabArr} searchResults={props.filteredSlabArr} />
       <main>{props.children}</main>
     </>
   );

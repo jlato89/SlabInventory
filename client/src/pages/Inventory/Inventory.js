@@ -12,8 +12,8 @@ class Inventory extends Component {
     this.state = {
       modalShow: false,
       modalData: '',
-      searchResults: null,
-      slabArr: []
+      slabArr: [],
+      searchResults: ''
     }
   }
 
@@ -33,10 +33,15 @@ class Inventory extends Component {
   addImageHandler = () => console.log('Add Image Btn Clicked');
   editSlabHandler = () => console.log('Edit Slab Btn Clicked');
 
+  filteredArrHandler = (slabArr) => {
+    this.setState({ searchResults: slabArr });
+    console.log('[INVENTORY Filter]', slabArr);
+  }
+
   render() {
     const { modalShow, modalData, slabArr, searchResults } = this.state;
     return (
-      <Layout>
+      <Layout slabArr={slabArr} filteredSlabArr={this.filteredArrHandler}>
         <InventoryList
           slabArr={searchResults ? searchResults : slabArr}
           clickedHandler={this.modalOpen}
