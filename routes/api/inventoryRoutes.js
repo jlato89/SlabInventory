@@ -1,6 +1,6 @@
 const db = require('../../models');
-const imgPath = 'client/public/assets/images/' //! testing
-// const imgPath = 'client/build/assets/images/'
+// const imgPath = 'client/public/assets/images/' //! testing
+const imgPath = 'client/build/assets/images/'
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => { cb(null, imgPath) },
