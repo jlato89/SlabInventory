@@ -59,6 +59,7 @@ class AddInventory extends Component {
     return (
       <Layout>
         <AddInvForm onSubmit={this.onSubmit} />
+        {/* TODO - remove ability to close modal */}
         <MyModal showModal={this.state.modalShow} handleModalClose={this.modalClose}>
           <center>
             <h5>Material added successfully!</h5>
