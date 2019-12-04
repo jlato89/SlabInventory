@@ -1,12 +1,12 @@
 const db = require('../../models');
 // const imgPath = 'client/public/assets/images/' //! testing
-const imgPath = 'client/build/assets/images/'
+const imgPath = 'client/build/assets/images/';
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => { cb(null, imgPath) },
   filename: (req, file, cb) => { cb(null, file.originalname) }
 });
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
 
 module.exports = app => {
   //? Get Slab List
