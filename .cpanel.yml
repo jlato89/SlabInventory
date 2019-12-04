@@ -1,0 +1,11 @@
+---
+deployment:
+  tasks:
+    - export ROOT=~/subdomains/discoverinv/
+    - export CLIENT=~/subdomains/discoverinv/client/build/
+    - /bin/cp -R config $ROOT
+    - /bin/cp -R models $ROOT
+    - /bin/cp -R routes $ROOT
+    - /bin/cp package* $ROOT
+    - /bin/cp server.js $ROOT
+    - /bin/cp client/build $CLIENT
