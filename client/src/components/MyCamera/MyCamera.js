@@ -46,6 +46,8 @@ const MyCamera = (props) => {
           onTakePhotoAnimationDone={(dataUri) => { onTakePhotoAnimationDone(dataUri) }}
           idealFacingMode={FACING_MODES.ENVIRONMENT}
           isImageMirror={false}
+          // isFullscreen={true}
+          isMaxResolution={true}
         />
       }
       {(dataUriArr.length !== 0) &&

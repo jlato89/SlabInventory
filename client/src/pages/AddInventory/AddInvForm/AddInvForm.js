@@ -71,6 +71,7 @@ const AddInvForm = (props) => {
                 </div>
               )}
             </Field>
+            <button type='button' onClick={toggleCameraHandler}>Start/Stop Camera</button>
             <Field name='files'>
               {props => (
                 <div>
@@ -93,8 +94,6 @@ const AddInvForm = (props) => {
             </div>
             <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
-
-          <button onClick={toggleCameraHandler}>Toggle Camera</button>
         </>
       )}
     </Form>
