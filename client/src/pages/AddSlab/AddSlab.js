@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout/Layout';
-import AddSlabForm from './SlabForm/SlabForm';
+import SlabForm from './SlabForm/SlabForm';
 import axios from 'axios';
 import MyModal from '../../components/MyModal/MyModal';
 import { Redirect } from 'react-router-dom';
@@ -58,7 +58,7 @@ class AddSlab extends Component {
   render() {
     return (
       <Layout>
-        <AddSlabForm onSubmit={this.onSubmit} />
+        <SlabForm onSubmit={this.onSubmit} />
         {/* TODO - remove ability to close modal */}
         <MyModal showModal={this.state.modalShow} handleModalClose={this.modalClose}>
           <center>
