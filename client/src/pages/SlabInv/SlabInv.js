@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import MyModal from '../../components/MyModal/MyModal';
 import SlabModal from './SlabModal/SlabModal';
 import Layout from '../../components/Layout/Layout';
-import InventoryList from './InventoryList/InventoryList';
-import AddInventoryBtn from './AddInventoryBtn/AddInventoryBtn';
+import SlabList from './SlabList/SlabList';
+import AddSlabBtn from './AddSlabBtn/AddSlabBtn';
 import axios from 'axios';
 
-class Inventory extends Component {
+class SlabInv extends Component {
   constructor() {
     super();
     this.state = {
@@ -42,7 +42,7 @@ class Inventory extends Component {
     const { modalShow, modalData, slabArr, searchResults } = this.state;
     return (
       <Layout slabArr={slabArr} filteredSlabArr={this.filteredArrHandler}>
-        <InventoryList
+        <SlabList
           slabArr={searchResults ? searchResults : slabArr}
           clickedHandler={this.modalOpen}
         />
@@ -57,10 +57,10 @@ class Inventory extends Component {
             editSlabBtn={this.editSlabHandler}
           />
         </MyModal>
-        <AddInventoryBtn />
+        <AddSlabBtn />
       </Layout>
     )
   }
 }
 
-export default Inventory
+export default SlabInv

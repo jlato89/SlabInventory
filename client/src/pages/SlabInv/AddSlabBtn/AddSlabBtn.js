@@ -2,12 +2,12 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
-import './AddInventoryBtn.module.css';
+import './AddSlabBtn.module.css';
 
-const AddInventoryBtn = (props) => {
+const AddSlabBtn = (props) => {
   return (
     <footer>
-      <Link to='/add-inventory'>
+      <Link to='/add-slab'>
         <Button
           block
           size='lg'
@@ -20,4 +20,4 @@ const AddInventoryBtn = (props) => {
   )
 }
 
-export default AddInventoryBtn
+export default AddSlabBtn

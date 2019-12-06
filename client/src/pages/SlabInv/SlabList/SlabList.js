@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Moment from 'react-moment';
 
-const InventoryList = (props) => {
+const SlabList = (props) => {
   const imgStringConvert = (imgFileString) => {
     const imgFileArr = imgFileString.split(',');
     return imgFileArr.length
@@ -44,4 +44,4 @@ const InventoryList = (props) => {
   )
 }
 
-export default InventoryList
+export default SlabList
