@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Form, Field } from 'react-final-form'
 import MyCamera from '../../../components/MyCamera/MyCamera';
-// import MyCamera from '../../../components/MyCamera/CreateImgFile/CreateImgFile';
 
-import styles from './AddInvForm.module.css';
+import styles from './AddSlabForm.module.css';
 
-const AddInvForm = (props) => {
+const AddSlabForm = (props) => {
   const [cameraActive, toggleCamera] = useState(false);
 
   const toggleCameraHandler = () => {
@@ -100,4 +99,4 @@ const AddInvForm = (props) => {
   )
 }
 
-export default AddInvForm;
+export default AddSlabForm;

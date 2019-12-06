@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout/Layout';
-import AddInvForm from './AddInvForm/AddInvForm';
+import AddSlabForm from './AddSlabForm/AddSlabForm';
 import axios from 'axios';
 import MyModal from '../../components/MyModal/MyModal';
 import { Redirect } from 'react-router-dom';
-class AddInventory extends Component {
+class AddSlab extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -58,7 +58,7 @@ class AddInventory extends Component {
   render() {
     return (
       <Layout>
-        <AddInvForm onSubmit={this.onSubmit} />
+        <AddSlabForm onSubmit={this.onSubmit} />
         {/* TODO - remove ability to close modal */}
         <MyModal showModal={this.state.modalShow} handleModalClose={this.modalClose}>
           <center>
@@ -72,4 +72,4 @@ class AddInventory extends Component {
   }
 }
 
-export default AddInventory
+export default AddSlab

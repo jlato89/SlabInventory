@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import PrivateRoute from './utils/PrivateRoute';
+// import PrivateRoute from './utils/PrivateRoute';
 import NoMatch from './pages/NoMatch';
 import Inventory from './pages/Inventory/Inventory';
-import AddInventory from './pages/AddInventory/AddInventory';
+import AddSlab from './pages/AddSlab/AddSlab';
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route exact path='/' component={Inventory} />
-        <Route exact path='/add-inventory' component={AddInventory} />
+        <Route exact path='/add-slab' component={AddSlab} />
 
         <Route component={NoMatch} />
       </Switch>
