@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout/Layout';
-import AddSlabForm from './AddSlabForm/AddSlabForm';
+import AddSlabForm from './SlabForm/SlabForm';
 import axios from 'axios';
 import MyModal from '../../components/MyModal/MyModal';
 import { Redirect } from 'react-router-dom';

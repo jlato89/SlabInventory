@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Form, Field } from 'react-final-form'
 import MyCamera from '../../../components/MyCamera/MyCamera';
 
-import styles from './AddSlabForm.module.css';
+import styles from './SlabForm.module.css';
 
-const AddSlabForm = (props) => {
+const SlabForm = (props) => {
   const [cameraActive, toggleCamera] = useState(false);
 
   const toggleCameraHandler = () => {
@@ -20,14 +20,14 @@ const AddSlabForm = (props) => {
   const required = value => (value ? undefined : 'Required');
 
   return (
-    <Form onSubmit={props.onSubmit}>
-      {({ handleSubmit, form, submitting, pristine, values }) => (
-        <>
+    <section className={styles.wrapper}>
+      <Form onSubmit={props.onSubmit}>
+        {({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
             <Field name='material.name' placeholder='Blue Fire' validate={required}>
               {({ input, meta, placeholder }) => (
-                <div>
-                  <label className={styles.inputHeader}>Material</label>
+                <div className={styles.formFields}>
+                  <label className={styles.inputHeader}>Slab Name</label>
                   <input {...input} placeholder={placeholder} />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
@@ -35,8 +35,8 @@ const AddSlabForm = (props) => {
             </Field>
             <Field name='material.type' validate={required}>
               {({ input, meta }) => (
-                <div>
-                  <label className={styles.inputHeader}>Material Type</label>
+                <div className={styles.formFields}>
+                  <label className={styles.inputHeader}>Slab Type</label>
                   <select {...input}>
                     <option value=''>Choose Type</option>
                     <option value='marble'>Marble</option>
@@ -47,8 +47,8 @@ const AddSlabForm = (props) => {
                 </div>
               )}
             </Field>
-            <div>
-              <label className={styles.inputHeader}>Material Finish</label>
+            <div className={styles.formFields}>
+              <label className={styles.inputHeader}>Slab Finish</label>
               {matFinishes.map(field => (
                 <label key={field.value} className={styles.checkboxLabel}>
                   <Field
@@ -63,8 +63,8 @@ const AddSlabForm = (props) => {
             </div>
             <Field name='material.size' placeholder='170 x 85' validate={required}>
               {({ input, meta, placeholder }) => (
-                <div>
-                  <label className={styles.inputHeader}>Material Size</label>
+                <div className={styles.formFields}>
+                  <label className={styles.inputHeader}>Slab Size</label>
                   <input {...input} placeholder={placeholder} />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
@@ -73,7 +73,7 @@ const AddSlabForm = (props) => {
             <button type='button' onClick={toggleCameraHandler}>Start/Stop Camera</button>
             <Field name='files'>
               {props => (
-                <div>
+                <div className={styles.formFields}>
                   <MyCamera
                     {...props.input}
                     material={values.material}
@@ -93,10 +93,10 @@ const AddSlabForm = (props) => {
             </div>
             <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
-        </>
-      )}
-    </Form>
+        )}
+      </Form>
+    </section>
   )
 }
 
-export default AddSlabForm;
+export default SlabForm;

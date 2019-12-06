@@ -1,4 +1,7 @@
-div {
+.wrapper {
+  padding: 5px;
+}
+.formFields {
   margin-bottom: 15px;
 }
 .checkboxLabel {
