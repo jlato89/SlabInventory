@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Field } from 'react-final-form'
 import MyCamera from '../../../components/MyCamera/MyCamera';
-
+import MyCam from '../../../components/MyCamera/MyCamera2';
 import styles from './SlabForm.module.css';
 
 const SlabForm = (props) => {
@@ -78,6 +78,16 @@ const SlabForm = (props) => {
                     {...props.input}
                     material={values.material}
                     cameraActive={cameraActive}
+                  />
+                </div>
+              )}
+            </Field>
+
+            <Field name='photos'>
+              {props => (
+                <div className={styles.formFields}>
+                  <MyCam
+                    {...props.input}
                   />
                 </div>
               )}

@@ -1,0 +1,10 @@
+.cameraBtn {
+  background-color: grey;
+  color: blue;
+  border: 1px black solid;
+  padding: 5px;
+  margin: 0;
+}
+.cameraInput {
+  display: none;
+}
