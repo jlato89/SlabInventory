@@ -3,17 +3,23 @@ import { Form, Field } from 'react-final-form'
 import styles from './AddInv.module.css';
 
 const AddInv = (props) => {
+  let endResult = {};
+  const required = value => (value ? undefined : 'Required');
+
   const onSubmit = ({ material, math }) => {
     console.log('[AddInv]', material);
     if (math.size1 || math.size2) {
       const total = math.size1 * math.size2 / 144;
-      material.sqfeet = total;
-      material.dimension = `${math.size1} x ${math.size2}`;
+      material.sqfeet = total.toFixed(2);
+      material.dimension = `${math.size1}X${math.size2}`;
     }
-    window.alert(JSON.stringify(material, 0, 2))
+    if (math.blk || math.slabNum) {
+      const slabId = `${math.blk}-${math.slabNum}`;
+      material.slabId = slabId;
+    }
+    endResult = material
+    // window.alert(JSON.stringify(material, 0, 2))
   };
-
-  const required = value => (value ? undefined : 'Required');
 
   return (
     <section className={styles.wrapper}>
@@ -86,7 +92,7 @@ const AddInv = (props) => {
             <div>
               <label className={styles.inputHeader}>Slab Details</label>
               <Field
-                name='material.blk'
+                name='math.blk'
                 component='input'
                 type='text'
                 size='6'
@@ -94,7 +100,7 @@ const AddInv = (props) => {
               />
               <span><strong> - </strong></span>
               <Field
-                name='material.slabNum'
+                name='math.slabNum'
                 component='input'
                 type='text'
                 size='3'
@@ -109,6 +115,7 @@ const AddInv = (props) => {
                 Reset
               </button>
             </div>
+            <pre>{JSON.stringify(endResult, 0, 2)}</pre>
             <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
         )}
