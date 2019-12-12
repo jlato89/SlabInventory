@@ -1,0 +1,9 @@
+.inputHeader {
+  display: block;
+  font-weight: bold;
+  margin: 0;
+}
+input,
+select {
+  margin-bottom: 10px;
+}

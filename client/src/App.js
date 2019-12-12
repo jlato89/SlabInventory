@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NoMatch from './pages/NoMatch';
 import SlabInv from './pages/SlabInv/SlabInv';
 import AddSlab from './pages/AddSlab/AddSlab';
+import AddInv from './pages/AddInv/AddInv';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={SlabInv} />
         <Route exact path='/add-slab' component={AddSlab} />
+        <Route exact path='/add-inv' component={AddInv} />
 
         <Route component={NoMatch} />
       </Switch>
