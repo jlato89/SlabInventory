@@ -17,7 +17,8 @@ const SlabForm = (props) => {
     { value: 'leathered', label: 'Leathered' }
   ]
 
-  const required = value => (value ? undefined : 'Required');
+  const required = value => (
+    value ? undefined : <span className={styles.required}>Required</span>);
 
   return (
     <section className={styles.wrapper}>
@@ -29,7 +30,7 @@ const SlabForm = (props) => {
                 <div className={styles.formFields}>
                   <label className={styles.inputHeader}>Slab Name</label>
                   <input {...input} placeholder={placeholder} />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                  {meta.error && meta.touched && meta.error}
                 </div>
               )}
             </Field>
@@ -43,7 +44,7 @@ const SlabForm = (props) => {
                     <option value='granite'>Granite</option>
                     <option value='quartz'>Quartz</option>
                   </select>
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                  {meta.error && meta.touched && meta.error}
                 </div>
               )}
             </Field>
@@ -66,7 +67,7 @@ const SlabForm = (props) => {
                 <div className={styles.formFields}>
                   <label className={styles.inputHeader}>Slab Size</label>
                   <input {...input} placeholder={placeholder} />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                  {meta.error && meta.touched && meta.error}
                 </div>
               )}
             </Field>

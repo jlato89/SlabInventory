@@ -6,8 +6,8 @@ import styles from './AddInv.module.css';
 
 const AddInv = (props) => {
   let endResult = {};
-  // const required = value => (value ? undefined : 'Required');
-  const required = null;
+  const required = value => (
+    value ? undefined : <span className={styles.required}>Required</span>);
 
   const onSubmit = ({ material, math }) => {
     console.log('[AddInv]', material);
@@ -35,7 +35,7 @@ const AddInv = (props) => {
                   <div className={styles.formFields}>
                     <label className={styles.inputHeader}>Slab Name</label>
                     <input {...input} placeholder={placeholder} />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                    {meta.error && meta.touched && meta.error}
                   </div>
                 )}
               </Field>
@@ -49,7 +49,7 @@ const AddInv = (props) => {
                       <option value='granite'>Granite</option>
                       <option value='quartz'>Quartz</option>
                     </select>
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                    {meta.error && meta.touched && meta.error}
                   </div>
                 )}
               </Field>
@@ -63,7 +63,7 @@ const AddInv = (props) => {
                       <option value='polished'>Polished</option>
                       <option value='leathered'>Leather</option>
                     </select>
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                    {meta.error && meta.touched && meta.error}
                   </div>
                 )}
               </Field>

@@ -7,3 +7,9 @@ input,
 select {
   margin-bottom: 10px;
 }
+.required {
+  line-height: 32px;
+  margin-left: 10px;
+  color: #800;
+  font-weight: bold;
+}
